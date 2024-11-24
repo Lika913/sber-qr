@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { HttpMethod } from './consts/http-method.js';
 
 export interface IEndpoint {

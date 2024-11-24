@@ -3,16 +3,17 @@ import fs from 'fs';
 import btoa from 'btoa';
 import { v4 as uuidv4 } from 'uuid'
 import { HttpClientBase } from './http-client-base.js';
+import { IHttpMcSberClient } from '../../types/IHttpMcSberClient.js';
 
 // данные должны браться из env
 const caCert = null;
 const pfxCert = null;
-const passphrase = '';
+const passphrase = ''
 const clientId = '';
 const clientSecret = '';
-const baseUrl = '';
+const baseUrl = ''
 
-export class HttpMcSberClient extends HttpClientBase {
+export class HttpMcSberClient extends HttpClientBase implements IHttpMcSberClient {
     constructor () {
         const headers = {
             'content-type': 'application/x-www-form-urlencoded',
@@ -26,7 +27,7 @@ export class HttpMcSberClient extends HttpClientBase {
         super(baseUrl, headers, agent)
     };
 
-    async oauthV3(scope) {
+    async oauthV3(scope: string) {
         const body = {
             grant_type: 'client_credentials',
             scope,

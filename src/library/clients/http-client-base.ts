@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { generateErrorResponse } from '../helpers/responses-generator.js'
-import { IHttpClientBase } from '../../types/IHttpClientBase.js';
 import { IHttpMethodOptions } from '../../types/IHttpMethodOptions.js'
 import { IResponse } from '../../types/IResponse.js';
 
-export class HttpClientBase implements IHttpClientBase {
+export abstract class HttpClientBase {
     private baseURL: string;
     private defaultHeaders: object;
     private agent: object;
@@ -44,7 +43,7 @@ export class HttpClientBase implements IHttpClientBase {
         }
     }
 
-    async get(
+    protected async get(
         endpoint: string,
         headers?: object
     ) {
@@ -55,7 +54,7 @@ export class HttpClientBase implements IHttpClientBase {
         });
     };
 
-    async post(
+    protected async post(
         endpoint: string,
         body?: object,
         headers?: object
@@ -68,7 +67,7 @@ export class HttpClientBase implements IHttpClientBase {
         });
     };
 
-    async put(
+    protected async put(
         endpoint: string,
         body?: object,
         headers?: object
@@ -81,7 +80,7 @@ export class HttpClientBase implements IHttpClientBase {
         });
     };
 
-    async patch(
+    protected async patch(
         endpoint: string,
         body?: object,
         headers?: object
@@ -94,7 +93,7 @@ export class HttpClientBase implements IHttpClientBase {
         });
     };
 
-    async delete(
+    protected async delete(
         endpoint: string,
         headers?: object
     ) {
