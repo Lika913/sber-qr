@@ -1,18 +1,21 @@
 import express, { Express } from 'express';
 import { Server } from 'http';
 import { SberQrController } from './controllers/sber-qr-controller.js';
+import { injectable, inject } from 'inversify';
+import { ServiceId } from './types/consts/service-id.js';
 
+@injectable()
 export class PaymentsApp {
     app: Express;
     server: Server;
     port: number;
 
-    sberQrController: SberQrController;
-
-    constructor(port = 8888) {
+    constructor(
+        @inject(ServiceId.SberQrController) private sberQrController: SberQrController,
+    ) {
         this.app = express();
-        this.port = port;
-        this.sberQrController = new SberQrController();
+        this.port = 8888;
+        this.sberQrController = sberQrController;
     }
 
     private useRouters() {

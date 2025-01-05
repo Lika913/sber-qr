@@ -1,5 +1,5 @@
 import { IResponse } from "./IResponse";
 
-export interface IHttpMcSberClient {
+export interface IHttpSberClient {
     oauthV3: (scope: string) => Promise<IResponse>
 }

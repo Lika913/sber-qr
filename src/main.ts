@@ -1,8 +1,10 @@
+import 'dotenv/config';
 import { PaymentsApp } from './app.js'
+import { appContainer } from './inversify.config.js'
+import { ServiceId } from './types/consts/service-id.js';
 
-async function init() {
-    const app = new PaymentsApp();
-    await app.start();
-}
 
-init();
+
+const app = appContainer.get<PaymentsApp>(ServiceId.PaymentsApp);
+
+app.start();

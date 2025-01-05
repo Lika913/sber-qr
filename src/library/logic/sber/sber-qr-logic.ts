@@ -1,16 +1,19 @@
-import { HttpMcSberClient } from "../../clients/http-mc-sber-client.js";
+import { inject, injectable } from "inversify";
+import { ServiceId } from "../../../types/consts/service-id.js"
+import { IHttpSberClient } from "../../../types/IHttpSberClient.js";
 
+@injectable()
 export class SberQrLogic {
-    httpMcSberClient: HttpMcSberClient;
 
-    constructor() {
-        this.httpMcSberClient = new HttpMcSberClient();
+    constructor(
+        @inject(ServiceId.IHttpSberClient) private httpSberClient: IHttpSberClient
+    ) {
     }
 
     async getToken() {
-        console.log('какая-то бизнес логика');
-        //...
+        // какая-то бизнес логика
+        // ...
 
-        return await this.httpMcSberClient.oauthV3('https://api.sberbank.ru/qr/order.create')
+        return await this.httpSberClient.oauthV3('https://api.sberbank.ru/qr/order.create')
     }
 }

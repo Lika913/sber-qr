@@ -38,7 +38,7 @@ export abstract class HttpClientBase {
         } catch (error: any) {
             return generateErrorResponse(
                 error?.status ?? 500,
-                error?.response?.data?.moreInformation ?? error?.message
+                error?.response?.data?.moreInformation ?? error?.message ?? 'Internal Server Error'
             )
         }
     }
