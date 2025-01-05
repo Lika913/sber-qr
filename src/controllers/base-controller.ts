@@ -1,6 +1,5 @@
 import { Router } from 'express'; 
 import { IEndpoint } from '../types/IEndpoint.js';
-import { injectable } from 'inversify';
 
 export abstract class BaseController {
     private readonly _router: Router;
